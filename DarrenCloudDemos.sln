@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarrenCloudDemos.Lib", "DarrenCloudDemos.Lib\DarrenCloudDemos.Lib.csproj", "{3BD60FC1-4260-4917-9CDF-5A1756FCDFA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Lib", "DarrenCloudDemos.Lib\DarrenCloudDemos.Lib.csproj", "{3BD60FC1-4260-4917-9CDF-5A1756FCDFA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarrenCloudDemos.Lib.Tests", "DarrenCloudDemos.Lib.Tests\DarrenCloudDemos.Lib.Tests.csproj", "{2627990B-9B31-4D8D-AEB9-71BD89F4E91F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Lib.Tests", "DarrenCloudDemos.Lib.Tests\DarrenCloudDemos.Lib.Tests.csproj", "{2627990B-9B31-4D8D-AEB9-71BD89F4E91F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarrenCloudDemos.Con", "DarrenCloudDemos.Con\DarrenCloudDemos.Con.csproj", "{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Con", "DarrenCloudDemos.Con\DarrenCloudDemos.Con.csproj", "{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarrenCloudDemos.Web", "DarrenCloudDemos.Web\DarrenCloudDemos.Web.csproj", "{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
