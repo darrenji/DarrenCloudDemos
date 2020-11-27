@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoWrapper;
 using DarrenCloudDemos.Lib.Helpers;
+using DarrenCloudDemos.Web.Extensions;
 
 namespace DarrenCloudDemos.Web
 {
@@ -25,6 +26,7 @@ namespace DarrenCloudDemos.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             #region º”√‹
 
             services.AddCertificateManager();
@@ -39,6 +41,9 @@ namespace DarrenCloudDemos.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            ServiceActivator.Configure(app.ApplicationServices);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
