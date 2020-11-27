@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoWrapper;
+using DarrenCloudDemos.Lib.Helpers;
 
 namespace DarrenCloudDemos.Web
 {
@@ -24,6 +25,13 @@ namespace DarrenCloudDemos.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            #region 加密
+
+            services.AddCertificateManager();
+            services.AddTransient<SymmetricEncryptDecrypt>();
+            services.AddTransient<AsymmetricEncryptDecrypt>();
+            services.AddTransient<DigitalSignatures>(); 
+            #endregion
 
             services.Configure<App>(Configuration.GetSection(nameof(App)));//把appsettings.json中的配置读取到App
         }

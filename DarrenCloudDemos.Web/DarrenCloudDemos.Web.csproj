@@ -8,4 +8,12 @@
     <PackageReference Include="AutoWrapper.Core" Version="4.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="新文件夹\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DarrenCloudDemos.Lib\DarrenCloudDemos.Lib.csproj" />
+  </ItemGroup>
+
 </Project>
