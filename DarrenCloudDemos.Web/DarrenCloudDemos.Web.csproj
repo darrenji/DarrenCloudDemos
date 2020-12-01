@@ -5,15 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="新文件夹\**" />
+    <Content Remove="新文件夹\**" />
+    <EmbeddedResource Remove="新文件夹\**" />
+    <None Remove="新文件夹\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoWrapper.Core" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="新文件夹\" />
+    <ProjectReference Include="..\DarrenCloudDemos.Lib\DarrenCloudDemos.Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DarrenCloudDemos.Lib\DarrenCloudDemos.Lib.csproj" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>

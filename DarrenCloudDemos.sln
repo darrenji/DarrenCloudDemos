@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Lib.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Con", "DarrenCloudDemos.Con\DarrenCloudDemos.Con.csproj", "{03D6BC29-4324-4484-8F68-B9FEAA9F91A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarrenCloudDemos.Web", "DarrenCloudDemos.Web\DarrenCloudDemos.Web.csproj", "{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DarrenCloudDemos.Web", "DarrenCloudDemos.Web\DarrenCloudDemos.Web.csproj", "{D6D96DD4-E248-4BAA-8D8B-73BDBE7D5326}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

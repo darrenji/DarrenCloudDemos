@@ -11,17 +11,21 @@ using AutoWrapper;
 using DarrenCloudDemos.Lib.Helpers;
 using DarrenCloudDemos.Web.Extensions;
 using Microsoft.Extensions.Primitives;
+using DarrenCloudDemos.Lib.Threads;
+using DarrenCloudDemos.Lib;
 
 namespace DarrenCloudDemos.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Env { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -52,9 +56,10 @@ namespace DarrenCloudDemos.Web
             services.AddCertificateManager();
             services.AddTransient<SymmetricEncryptDecrypt>();
             services.AddTransient<AsymmetricEncryptDecrypt>();
-            services.AddTransient<DigitalSignatures>(); 
+            services.AddTransient<DigitalSignatures>();
             #endregion
 
+            #region 配置
             services.Configure<App>(Configuration.GetSection(nameof(App)));//把appsettings.json中的配置读取到App
 
 
@@ -94,7 +99,16 @@ namespace DarrenCloudDemos.Web
             //});
 
             //services.Configure<ThemeOptions>("DarkTheme", Configuration.GetSection("Themes:Dark"));
-            //services.Configure<ThemeOptions>("WhiteTheme", Configuration.GetSection("Themes:White"));
+            //services.Configure<ThemeOptions>("WhiteTheme", Configuration.GetSection("Themes:White")); 
+            #endregion
+
+            #region 线程和调试和日志
+            ThreadMananger.RegisterThreads();
+            var ddSetting = new DDSetting();
+            Configuration.GetSection("DDSetting").Bind(ddSetting);
+            Config.DDSetting = ddSetting;
+            Config.WebPath = Env.ContentRootPath;
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
