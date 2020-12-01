@@ -11,5 +11,10 @@ namespace DarrenCloudDemos.Web.Models
         [Required(ErrorMessage ="必填")]
         [MaxLength(5, ErrorMessage ="最大长度5")]
         public string Name { get; set; }
+
+
+        [Required(ErrorMessage = "必填")]
+        [MaxLength(5, ErrorMessage = "最大长度5")]
+        public string Location { get; set; }
     }
 }

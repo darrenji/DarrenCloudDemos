@@ -13,6 +13,10 @@ using DarrenCloudDemos.Web.Extensions;
 using Microsoft.Extensions.Primitives;
 using DarrenCloudDemos.Lib.Threads;
 using DarrenCloudDemos.Lib;
+using Microsoft.AspNetCore.Diagnostics;
+using DarrenCloudDemos.Lib.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using DarrenCloudDemos.Web.Models;
 
 namespace DarrenCloudDemos.Web
 {
@@ -109,25 +113,43 @@ namespace DarrenCloudDemos.Web
             Config.DDSetting = ddSetting;
             Config.WebPath = Env.ContentRootPath;
             #endregion
+
+            #region AutoWrapper
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                //取消APIController中OnActionExecuting事件对模型的验证返回400 Bad Request
+                options.SuppressModelStateInvalidFilter = true;
+            }); 
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            ServiceActivator.Configure(app.ApplicationServices);
+            //ServiceActivator.Configure(app.ApplicationServices);
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //}
+
+            //app.UseApiExceptionHandler();//API全局异常处理
+
             app.UseStaticFiles();
 
-            app.UseApiResponseAndExceptionWrapper();//统一API响应和异常处理
+            #region AutoWrapper
+            //app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { UseApiProblemDetailsException =true});//统一API响应和异常处理
+            //app.UseApiResponseAndExceptionWrapper();//统一API响应和异常处理 
+            //app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { UseCustomSchema = true });//统一API响应和异常处理 
+            app.UseApiResponseAndExceptionWrapper<MapResponseObject>(new AutoWrapperOptions { ApiVersion="1.0.0.0", ShowApiVersion=true, ShowStatusCode=true,ShowIsErrorFlagForSuccessfulResponse=true});
+            #endregion
 
             app.UseRouting();
 
