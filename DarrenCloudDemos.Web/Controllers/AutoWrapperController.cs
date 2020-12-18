@@ -26,7 +26,7 @@ namespace DarrenCloudDemos.Web.Controllers
         [HttpGet]
         public ApiResponse Get1()
         {
-            StatusCodes.Status200OK
+          
             try
             {
 
@@ -34,7 +34,7 @@ namespace DarrenCloudDemos.Web.Controllers
                 int j = 5 / i;
                 return new ApiResponse("New record has been created in the database", 1, StatusCodes.Status201Created);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;

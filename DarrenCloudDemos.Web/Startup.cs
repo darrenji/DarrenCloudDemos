@@ -17,6 +17,11 @@ using Microsoft.AspNetCore.Diagnostics;
 using DarrenCloudDemos.Lib.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using DarrenCloudDemos.Web.Models;
+using DarrenCloudDemos.Web.ApiKeys;
+using DarrenCloudDemos.Web.ApiKeys.Authentication;
+using DarrenCloudDemos.Web.ApiKeys.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
 
 namespace DarrenCloudDemos.Web
 {
@@ -53,7 +58,12 @@ namespace DarrenCloudDemos.Web
              */
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
 
             #region 加密
 
@@ -120,7 +130,45 @@ namespace DarrenCloudDemos.Web
             {
                 //取消APIController中OnActionExecuting事件对模型的验证返回400 Bad Request
                 options.SuppressModelStateInvalidFilter = true;
-            }); 
+            });
+            #endregion
+
+            #region API Key 验证授权
+
+            /*
+             验证的配置放在了：AuthenticationSchemeOptions
+             验证的验证逻辑放在了：AuthenticationHandler
+             AuthenticaitonBuilder是建造者
+
+             验证的逻辑是：List<Cliam> → List<ClaimsIdentity> → ClaimsPrincipal → AuthenticationTicket
+             */
+
+            //services.AddAuthentication(options =>
+            //{               
+            //    options.DefaultAuthenticateScheme = ApiKeyAuthenticationOptions.DefaultScheme;
+            //    options.DefaultChallengeScheme = ApiKeyAuthenticationOptions.DefaultScheme;
+            //}).AddApiKeySupport(options => { });
+
+            /*
+             授权
+             IAuthorizationRequirement 
+             AuthorizationHandler<IAuthorizationRequirement>
+             */
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy(Policies.OnlyEmployees, policy => policy.Requirements.Add(new OnlyEmployeesRequirement()));
+            //    options.AddPolicy(Policies.OnlyManagers, policy => policy.Requirements.Add(new OnlyManagersRequirement()));
+            //    options.AddPolicy(Policies.OnlyThirdParties, policy => policy.Requirements.Add(new OnlyThirdPartiesRequirement()));
+            //});
+
+            //services.AddSingleton<IAuthorizationHandler, OnlyEmployeesAuthorizationHandler>();
+            //services.AddSingleton<IAuthorizationHandler, OnlyManagersAuthorizationHandler>();
+            //services.AddSingleton<IAuthorizationHandler, OnlyThirdPartiesAuthorizationHandler>();
+
+            //services.AddSingleton<IGetApiKeyQuery, InMemoryGetApiKeyQuery>();
+
+            //services.AddRouting(x => x.LowercaseUrls = true);
             #endregion
         }
 
@@ -153,6 +201,7 @@ namespace DarrenCloudDemos.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

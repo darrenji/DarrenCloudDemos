@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="新文件夹\**" />
-    <Content Remove="新文件夹\**" />
-    <EmbeddedResource Remove="新文件夹\**" />
-    <None Remove="新文件夹\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoWrapper.Core" Version="4.3.1" />
   </ItemGroup>
 
