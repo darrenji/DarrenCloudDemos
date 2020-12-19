@@ -22,6 +22,11 @@ using DarrenCloudDemos.Web.ApiKeys.Authentication;
 using DarrenCloudDemos.Web.ApiKeys.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using DarrenCloudDemos.Web.NormalAuth.Shared;
+using DarrenCloudDemos.Web.NormalAuth.Authentication;
+using DarrenCloudDemos.Web.NormalAuth.Authorization;
 
 namespace DarrenCloudDemos.Web
 {
@@ -169,6 +174,31 @@ namespace DarrenCloudDemos.Web
             //services.AddSingleton<IGetApiKeyQuery, InMemoryGetApiKeyQuery>();
 
             //services.AddRouting(x => x.LowercaseUrls = true);
+            #endregion
+
+            //»º´æ
+            services.AddMemoryCache();
+
+            #region ÊÖ»úºÅºÍÑéÖ¤ÂëµÇÂ¼×¢²á
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = NormalAuthAuthenticationOptions.DefaultScheme;
+                x.DefaultChallengeScheme = NormalAuthAuthenticationOptions.DefaultScheme;
+            })
+            .AddNormalAuthSupport(options => { })
+            .AddJwtBearer(x =>
+            {
+                x.TokenValidationParameters = new TokenValidationParameters();
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(NormalAuthPolicies.OnlyAdmin, policy => policy.Requirements.Add(new OnlyAdminRequirement()));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, OnlyAdminAuthorizationHandler>();
+            services.AddSingleton<TokenHelper>();
+            services.AddSingleton<IGetNormalUser, InMemoryGetNormalUser>();
             #endregion
         }
 
