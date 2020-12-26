@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using DarrenCloudDemos.Lib.DesignPatterns;
+using DarrenCloudDemos.Lib.DesignPatterns.Strategy;
 using DarrenCloudDemos.Lib.DesignPatterns.TemplateMethod;
 using DarrenCloudDemos.Lib.Helpers;
 using Microsoft.Extensions.DependencyInjection;
@@ -84,43 +85,86 @@ namespace DarrenCloudDemos.Con
             #endregion
 
             #region 针对泛型
+            //var names = new List<string>()
+            //{
+            //    "Tamra Grist"       ,
+            //    "Bennie Sweatt"     ,
+            //    "Misha Mattei"      ,
+            //    "Mable Lampkins"    ,
+            //    "Kaley Gervasi"     ,
+            //    "Nettie Horace"     ,
+            //    "Cassidy Broxton"   ,
+            //    "January Berk"      ,
+            //    "Michele Barga"     ,
+            //    "Arden Emig"        ,
+            //};
+            //Random _rand = new Random(1024);
+            //var unsorted = Enumerable.Range(0, 10)
+            //    .Select(r => new TemplateMethodPerson(names[r], _rand.Next(100)))
+            //    .ToList();
+
+            //List<TemplateMethodPerson> sorted;
+            //Console.WriteLine("Original array elements:");
+            //foreach (var item in unsorted)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine();
+
+            //var algorithm = new MergeSort1<TemplateMethodPerson>();
+            //sorted = algorithm.Sort(unsorted);
+
+            //Console.WriteLine("Sorted array elements: ");
+            //foreach (var item in sorted)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine();
+            #endregion
 
             #endregion
-            var names = new List<string>()
-            {
-                "Tamra Grist"       ,
-                "Bennie Sweatt"     ,
-                "Misha Mattei"      ,
-                "Mable Lampkins"    ,
-                "Kaley Gervasi"     ,
-                "Nettie Horace"     ,
-                "Cassidy Broxton"   ,
-                "January Berk"      ,
-                "Michele Barga"     ,
-                "Arden Emig"        ,
-            };
-            Random _rand = new Random(1024);
-            var unsorted = Enumerable.Range(0, 10)
-                .Select(r => new TemplateMethodPerson(names[r], _rand.Next(100)))
-                .ToList();
 
-            List<TemplateMethodPerson> sorted;
-            Console.WriteLine("Original array elements:");
-            foreach (var item in unsorted)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+            #region Strategy Pattern
+            //把策略包裹在内部Context
+            //StrategyContext context = new StrategyContext(100);
+            //Console.WriteLine("Enter month number between 1 and 12");
+            //var input = Console.ReadLine();
+            //int month = Convert.ToInt32(input);
+            //Console.WriteLine("Month =" + month);
+            ////根据某个条件获取策略
+            //IOfferStrategy strategy = context.GetStrategy(month);
+            ////运行策略
+            //context.ApplyStrategy(strategy);
 
-            var algorithm = new MergeSort1<TemplateMethodPerson>();
-            sorted = algorithm.Sort(unsorted);
+            //把策略放在方法参数里
+            // translate a phrase using the AustralianTranslationStrategy class
+            //string aussieHello = EnglishTranslation.Translate("Hello",
+            //        new AustralianTranslationStrategy());
+            //Console.WriteLine(aussieHello);
+            //// Hello, mate
+            //// translate a phrase using the AmericanTranslationStrategy class
+            //string usaHello = EnglishTranslation.Translate("Hello",
+            //        new AmericanTranslationStrategy());
+            //Console.WriteLine(usaHello);
 
-            Console.WriteLine("Sorted array elements: ");
-            foreach (var item in sorted)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+            //把策略交给一个服务类
+            //CommunicateViaPhone communicateViaPhone = new CommunicateViaPhone();
+            //CommunicateViaEmail communicateViaEmail = new CommunicateViaEmail();
+            //CommunicateViaVideo communicateViaVideo = new CommunicateViaVideo();
+
+            //CommunicationService communicationService = new CommunicationService();
+            //// via phone
+            //communicationService.SetCommuncationMeans(communicateViaPhone);
+            //communicationService.Communicate("1234567");
+            //// via email
+            //communicationService.SetCommuncationMeans(communicateViaEmail);
+            //communicationService.Communicate("hi@me.com");
+
+            //把委托交给一个服务类
+            //string communicateViaPhone(string destination) => "communicating " + destination + " via Phone..";
+            //CommunicationService1 communicationService = new CommunicationService1();
+            //communicationService.SetCommuncationMeans(communicateViaPhone);
+            //communicationService.Communicate("1234567");//内部交给了委托
             #endregion
 
             Console.WriteLine();
