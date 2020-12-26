@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using DarrenCloudDemos.Lib.DesignPatterns;
+using DarrenCloudDemos.Lib.DesignPatterns.ChainOfResponsibility;
 using DarrenCloudDemos.Lib.DesignPatterns.PublishSubscribe;
 using DarrenCloudDemos.Lib.DesignPatterns.Strategy;
 using DarrenCloudDemos.Lib.DesignPatterns.TemplateMethod;
@@ -214,7 +215,47 @@ namespace DarrenCloudDemos.Con
             //Console.WriteLine("Press enter to terminate!");
             #endregion
 
-            Console.WriteLine();
+            #region ChainOfResponsibility
+            ////create handlers
+            //var bills50s = new CurrencyBill(50, 1);
+            //var bills20s = new CurrencyBill(20, 2);
+            //var bills10s = new CurrencyBill(10, 5);
+
+            ////set handlers pipeline 链条在这里
+            //bills50s.RegisterNext(bills20s)
+            //        .RegisterNext(bills10s);
+
+            ////client code that uses the handler
+            //while (true)
+            //{
+            //    Console.WriteLine("Please enter amount to dispense:");
+            //    var isParsed = int.TryParse(Console.ReadLine(), out var amount);
+
+            //    if (isParsed)
+            //    {
+
+            //        //sender pass the request to first handler in the pipeline
+            //        var isDepensible = bills50s.DispenseRequest(amount);
+            //        if (isDepensible)
+            //        {
+            //            Console.WriteLine($"Your amount ${amount} is dispensable!");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine($"Failed to dispense ${amount}!");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Please enter a valid amount to dispense");
+            //    }
+            //}
+
+
+
+
+            #endregion
+            
         }
     }
 }
