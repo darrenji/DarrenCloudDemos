@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using DarrenCloudDemos.Lib.DesignPatterns;
+using DarrenCloudDemos.Lib.DesignPatterns.PublishSubscribe;
 using DarrenCloudDemos.Lib.DesignPatterns.Strategy;
 using DarrenCloudDemos.Lib.DesignPatterns.TemplateMethod;
 using DarrenCloudDemos.Lib.Helpers;
@@ -165,6 +166,52 @@ namespace DarrenCloudDemos.Con
             //CommunicationService1 communicationService = new CommunicationService1();
             //communicationService.SetCommuncationMeans(communicateViaPhone);
             //communicationService.Communicate("1234567");//内部交给了委托
+            #endregion
+
+            #region Pub/Sub
+            //Pub p = new Pub();
+            ////register for OnChange event - Subscriber 1
+            //p.OnChange += () => Console.WriteLine("Subscriber 1!");
+            ////register for OnChange event - Subscriber 2
+            //p.OnChange += () => Console.WriteLine("Subscriber 2!");
+
+            ////raise the event
+            //p.Raise();
+
+            ////After this Raise() method is called
+            ////all subscribers callback methods will get invoked
+
+            //Console.WriteLine("Press enter to terminate!");
+
+
+            //Pub1 p = new Pub1();
+            ////register for OnChange event - Subscriber 1
+            //p.OnChange += () => Console.WriteLine("Subscriber 1!");
+            ////register for OnChange event - Subscriber 2
+            //p.OnChange += () => Console.WriteLine("Subscriber 2!");
+
+            ////raise the event
+            //p.Raise();
+
+            ////After this Raise() method is called
+            ////all subscribers callback methods will get invoked
+
+            //Console.WriteLine("Press enter to terminate!");
+
+
+            //Pub3 p = new Pub3();
+            ////register for OnChange event - Subscriber 1
+            //p.OnChange += (sender, e) => Console.WriteLine("Subscriber 1! Value:" + e.Value);
+            ////register for OnChange event - Subscriber 2
+            //p.OnChange += (sender, e) => Console.WriteLine("Subscriber 2! Value:" + e.Value);
+
+            ////raise the event
+            //p.Raise();
+
+            ////After this Raise() method is called
+            ////all subscribers callback methods will get invoked
+
+            //Console.WriteLine("Press enter to terminate!");
             #endregion
 
             Console.WriteLine();
