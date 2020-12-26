@@ -1,7 +1,11 @@
 ﻿using CertificateManager;
+using DarrenCloudDemos.Lib.DesignPatterns;
+using DarrenCloudDemos.Lib.DesignPatterns.TemplateMethod;
 using DarrenCloudDemos.Lib.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace DarrenCloudDemos.Con
@@ -54,6 +58,70 @@ namespace DarrenCloudDemos.Con
             //Console.WriteLine(decrypted);
             #endregion
 
+
+            #region Template Method Pattern
+            #region 只针对int
+            //Random _rand = new Random(1024);
+            //var unsorted = Enumerable.Range(0, 10)
+            //    .Select(t => _rand.Next(100))
+            //    .ToList();
+            //List<int> sorted;
+            //Console.WriteLine("original array:");
+            //foreach (var item in unsorted)
+            //{
+            //    Console.Write(item + " ");
+            //}
+            //Console.WriteLine();
+
+            //var algorithm = new MergeSort();
+            //sorted = algorithm.Sort(unsorted);
+            //Console.WriteLine("sorted array:");
+            //foreach (var item in sorted)
+            //{
+            //    Console.Write(item + " ");
+            //}
+            //Console.WriteLine(); 
+            #endregion
+
+            #region 针对泛型
+
+            #endregion
+            var names = new List<string>()
+            {
+                "Tamra Grist"       ,
+                "Bennie Sweatt"     ,
+                "Misha Mattei"      ,
+                "Mable Lampkins"    ,
+                "Kaley Gervasi"     ,
+                "Nettie Horace"     ,
+                "Cassidy Broxton"   ,
+                "January Berk"      ,
+                "Michele Barga"     ,
+                "Arden Emig"        ,
+            };
+            Random _rand = new Random(1024);
+            var unsorted = Enumerable.Range(0, 10)
+                .Select(r => new TemplateMethodPerson(names[r], _rand.Next(100)))
+                .ToList();
+
+            List<TemplateMethodPerson> sorted;
+            Console.WriteLine("Original array elements:");
+            foreach (var item in unsorted)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+
+            var algorithm = new MergeSort1<TemplateMethodPerson>();
+            sorted = algorithm.Sort(unsorted);
+
+            Console.WriteLine("Sorted array elements: ");
+            foreach (var item in sorted)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            #endregion
 
             Console.WriteLine();
         }
