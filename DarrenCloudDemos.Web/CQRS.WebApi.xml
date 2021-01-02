@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DarrenCloudDemos.Web</name>
+    </assembly>
+    <members>
+        <member name="T:DarrenCloudDemos.Web.Controllers.AppController">
+            <summary>
+            热加载配置数据
+            </summary>
+        </member>
+        <member name="T:DarrenCloudDemos.Web.Controllers.AutoWrapperController">
+            <summary>
+            AutoWrapper的测试
+            </summary>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.AutoWrapperController.Get1">
+            <summary>
+            ApiResponse作为返回类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DarrenCloudDemos.Web.Controllers.EnController">
+            <summary>
+            加密解密
+            </summary>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.ProductController.Create(DarrenCloudDemos.Web.Features.ProductFeatures.Commands.CreateProductCommand)">
+            <summary>
+            Creates a New Product.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.ProductController.GetAll">
+            <summary>
+            Gets all Products.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.ProductController.GetById(System.Int32)">
+            <summary>
+            Gets Product Entity by Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.ProductController.Delete(System.Int32)">
+            <summary>
+            Deletes Product Entity based on Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.ProductController.Update(System.Int32,DarrenCloudDemos.Web.Features.ProductFeatures.Commands.UpdateProductCommand)">
+            <summary>
+            Updates the Product Entity based on Id.   
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DarrenCloudDemos.Web.Controllers.SecurityController.ShortCode(DarrenCloudDemos.Web.NormalAuth.UserRegister)">
+            <summary>
+            获取短信验证码
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DarrenCloudDemos.Web.Models.EncryptDemo.PublicKey">
+            <summary>
+            非对称公钥
+            </summary>
+        </member>
+        <member name="P:DarrenCloudDemos.Web.Models.EncryptDemo.PrivateKey">
+            <summary>
+            非对称私钥
+            </summary>
+        </member>
+        <member name="P:DarrenCloudDemos.Web.Models.EncryptDemo.Key">
+            <summary>
+            对称加密Key
+            </summary>
+        </member>
+        <member name="P:DarrenCloudDemos.Web.Models.EncryptDemo.IV">
+            <summary>
+            对称加密IV
+            </summary>
+        </member>
+        <member name="P:DarrenCloudDemos.Web.Models.EncryptDemo.EncryptedText">
+            <summary>
+            加密后的字符串
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DDD.Infrastructure.Core
 {
     /// <summary>
-    /// 普通实体的仓储
+    /// 泛型仓储接口，不包含主键
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity> where TEntity : Entity, IAggregateRoot
@@ -23,8 +23,7 @@ namespace DDD.Infrastructure.Core
     }
 
     /// <summary>
-    /// 包含主键类型实体的仓储
-    /// 拥有上面所有的方法，还可以根据主键类型操作
+    /// 泛型仓储接口，包含主键
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>

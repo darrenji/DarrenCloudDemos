@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace DDD.Infrastructure.Core
 {
+    /// <summary>
+    /// 泛型仓储的实现，是抽象类
+    /// 明确了用EF的DbContext上下文来处理
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TDbContext"></typeparam>
     public abstract class Repository<TEntity, TDbContext> : IRepository<TEntity> where TEntity : Entity, IAggregateRoot where TDbContext : EFContext
     {
         protected virtual TDbContext DbContext { get; set; }

@@ -27,6 +27,15 @@ using Microsoft.IdentityModel.Tokens;
 using DarrenCloudDemos.Web.NormalAuth.Shared;
 using DarrenCloudDemos.Web.NormalAuth.Authentication;
 using DarrenCloudDemos.Web.NormalAuth.Authorization;
+using Microsoft.AspNetCore.Http;
+using DarrenCloudDemos.Web.MultiTenants;
+using Microsoft.EntityFrameworkCore;
+using DarrenCloudDemos.Web.Database;
+using Microsoft.OpenApi.Models;
+using MediatR;
+using System.Reflection;
+using FluentValidation;
+using DarrenCloudDemos.Web.PipelineBehaviours;
 
 namespace DarrenCloudDemos.Web
 {
@@ -200,6 +209,39 @@ namespace DarrenCloudDemos.Web
             services.AddSingleton<TokenHelper>();
             services.AddSingleton<IGetNormalUser, InMemoryGetNormalUser>();
             #endregion
+
+            #region multi-tenant
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // To access HttpContext
+            services.AddDbContext<GlobalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<TenantDbContext>();
+            services.AddScoped<DbSeeder>();
+            #endregion
+
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+
+            #region Swagger
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.IncludeXmlComments(string.Format(@"{0}\CQRS.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "CQRS.WebApi",
+            //    });
+
+            //});
+            #endregion
+            #region MediatR
+            services.AddScoped<IApplicationContext>(provider => provider.GetService<ApplicationContext>());
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>)); 
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -222,6 +264,10 @@ namespace DarrenCloudDemos.Web
 
             app.UseStaticFiles();
 
+            #region multi-tenant
+            app.UseTenantIdentifier();
+            #endregion
+
             #region AutoWrapper
             //app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { UseApiProblemDetailsException =true});//统一API响应和异常处理
             //app.UseApiResponseAndExceptionWrapper();//统一API响应和异常处理 
@@ -233,6 +279,18 @@ namespace DarrenCloudDemos.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            #region Swagger
+            //// Enable middleware to serve generated Swagger as a JSON endpoint.
+            //app.UseSwagger();
+
+            //// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            //// specifying the Swagger JSON endpoint.
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CQRS.WebApi");
+            //});
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {

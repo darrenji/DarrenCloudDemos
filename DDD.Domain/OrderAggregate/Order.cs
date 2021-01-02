@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.Abstractions;
+using DDD.Domain.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;

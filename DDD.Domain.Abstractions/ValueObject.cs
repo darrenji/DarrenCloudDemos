@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DDD.Domain.Abstractions
 {
+    /// <summary>
+    /// 值对象，把对象当作值类型来处理
+    /// </summary>
    public abstract  class ValueObject
     {
         protected static bool EqualOperator(ValueObject left, ValueObject right)
